@@ -11,6 +11,7 @@
 		019A0E8C2A5E89A400BAACCC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019A0E8B2A5E89A400BAACCC /* ContentView.swift */; };
 		019A0E8E2A5E89A600BAACCC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 019A0E8D2A5E89A600BAACCC /* Assets.xcassets */; };
 		019A0E912A5E89A600BAACCC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 019A0E902A5E89A600BAACCC /* Preview Assets.xcassets */; };
+		019A0EA42A5E8CB100BAACCC /* MainTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019A0EA32A5E8CB100BAACCC /* MainTabBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		019A0E8B2A5E89A400BAACCC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		019A0E8D2A5E89A600BAACCC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		019A0E902A5E89A600BAACCC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		019A0EA32A5E8CB100BAACCC /* MainTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,10 +54,10 @@
 			isa = PBXGroup;
 			children = (
 				019A0E972A5E8B4500BAACCC /* App */,
-				019A0E982A5E8B4C00BAACCC /* Core */,
 				019A0E992A5E8B5300BAACCC /* Extensions */,
-				019A0E9A2A5E8B7100BAACCC /* Model */,
 				019A0E9B2A5E8B7900BAACCC /* Services */,
+				019A0E9A2A5E8B7100BAACCC /* Model */,
+				019A0E982A5E8B4C00BAACCC /* Core */,
 				019A0E8B2A5E89A400BAACCC /* ContentView.swift */,
 				019A0E8D2A5E89A600BAACCC /* Assets.xcassets */,
 				019A0E8F2A5E89A600BAACCC /* Preview Content */,
@@ -152,6 +154,7 @@
 		019A0EA12A5E8C2000BAACCC /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
+				019A0EA32A5E8CB100BAACCC /* MainTabBarView.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 			files = (
 				019A0E8C2A5E89A400BAACCC /* ContentView.swift in Sources */,
 				019A0E8A2A5E89A400BAACCC /* InstagramCloneApp.swift in Sources */,
+				019A0EA42A5E8CB100BAACCC /* MainTabBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
