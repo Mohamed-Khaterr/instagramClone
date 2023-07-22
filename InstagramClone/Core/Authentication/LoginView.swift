@@ -11,6 +11,7 @@ struct LoginView: View {
     
     @State private var email: String = ""
     @State private var password: String = ""
+    @State private var registerTapped = false
     
     var body: some View {
         NavigationStack {
@@ -25,18 +26,8 @@ struct LoginView: View {
                 
                 // TextFields
                 VStack {
-                    TextField("Email or username", text: $email)
-                        .autocapitalization(.none)
-                        .font(.subheadline)
-                        .padding(12)
-                        .background(Color(.systemGray6))
-                        .cornerRadius(10)
-                    
-                    SecureField("Password", text: $password)
-                        .font(.subheadline)
-                        .padding(12)
-                        .background(Color(.systemGray6))
-                        .cornerRadius(10)
+                    CustomTextFeild(type: .email, binding: $email)
+                    CustomTextFeild(type: .password, binding: $password)
                 }
                 .padding(.horizontal, 24)
                 
@@ -56,12 +47,7 @@ struct LoginView: View {
                     print("Login Button")
                 } label: {
                     Text("Login")
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity, maxHeight: 44)
-                        .background(Color(.systemBlue))
-                        .cornerRadius(10)
+                        .modifier(IGButtonModifier())
                 }
                 .padding(.top)
                 .padding(.horizontal, 24)
@@ -109,7 +95,7 @@ struct LoginView: View {
                 
                 // Register Link
                 NavigationLink {
-                    Text("Resiter")
+                    AddEmailView()
                 } label: {
                     Text("Don't have an account?")
                     
