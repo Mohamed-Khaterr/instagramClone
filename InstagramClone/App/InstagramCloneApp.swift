@@ -11,9 +11,9 @@ import SwiftUI
 struct InstagramCloneApp: App {
     var body: some Scene {
         WindowGroup {
-//            MainTabBarView()
+            MainTabBarView()
 //            AddEmailView()
-            LoginView()
+//            LoginView()
         }
     }
 }
