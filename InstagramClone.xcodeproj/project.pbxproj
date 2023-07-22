@@ -20,6 +20,8 @@
 		0176CDF62A6C0A5C00727633 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0176CDF52A6C0A5C00727633 /* ProfileHeaderView.swift */; };
 		0176CDF82A6C0EFE00727633 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0176CDF72A6C0EFE00727633 /* Post.swift */; };
 		0176CDFA2A6C199E00727633 /* ProfilePostGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0176CDF92A6C199E00727633 /* ProfilePostGridView.swift */; };
+		0176CDFC2A6C220C00727633 /* UploadPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0176CDFB2A6C220C00727633 /* UploadPostView.swift */; };
+		0176CDFE2A6C28A100727633 /* UploadPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0176CDFD2A6C28A100727633 /* UploadPostViewModel.swift */; };
 		019A0E8A2A5E89A400BAACCC /* InstagramCloneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019A0E892A5E89A400BAACCC /* InstagramCloneApp.swift */; };
 		019A0E8E2A5E89A600BAACCC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 019A0E8D2A5E89A600BAACCC /* Assets.xcassets */; };
 		019A0E912A5E89A600BAACCC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 019A0E902A5E89A600BAACCC /* Preview Assets.xcassets */; };
@@ -44,6 +46,8 @@
 		0176CDF52A6C0A5C00727633 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		0176CDF72A6C0EFE00727633 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		0176CDF92A6C199E00727633 /* ProfilePostGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostGridView.swift; sourceTree = "<group>"; };
+		0176CDFB2A6C220C00727633 /* UploadPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostView.swift; sourceTree = "<group>"; };
+		0176CDFD2A6C28A100727633 /* UploadPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostViewModel.swift; sourceTree = "<group>"; };
 		019A0E862A5E89A400BAACCC /* InstagramClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		019A0E892A5E89A400BAACCC /* InstagramCloneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramCloneApp.swift; sourceTree = "<group>"; };
 		019A0E8D2A5E89A600BAACCC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -119,10 +123,10 @@
 				019A0E9C2A5E8BAB00BAACCC /* Authentication */,
 				019A0EA12A5E8C2000BAACCC /* TabBar */,
 				019A0E9D2A5E8BC800BAACCC /* Feed */,
-				019A0E9E2A5E8BD300BAACCC /* Profile */,
 				019A0EA02A5E8BF000BAACCC /* Search */,
-				019A0E9F2A5E8BE400BAACCC /* Root */,
 				019A0EA22A5E8C2E00BAACCC /* UploadPost */,
+				019A0E9E2A5E8BD300BAACCC /* Profile */,
+				019A0E9F2A5E8BE400BAACCC /* Root */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -208,6 +212,8 @@
 		019A0EA22A5E8C2E00BAACCC /* UploadPost */ = {
 			isa = PBXGroup;
 			children = (
+				0176CDFB2A6C220C00727633 /* UploadPostView.swift */,
+				0176CDFD2A6C28A100727633 /* UploadPostViewModel.swift */,
 			);
 			path = UploadPost;
 			sourceTree = "<group>";
@@ -293,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				019A0EAD2A5EA3C600BAACCC /* FeedCell.swift in Sources */,
+				0176CDFC2A6C220C00727633 /* UploadPostView.swift in Sources */,
 				019A0EA62A5E8EF800BAACCC /* ProfileView.swift in Sources */,
 				019A0EA92A5E97E100BAACCC /* ProfileStatusView.swift in Sources */,
 				013AD9552A5F085D001A332A /* SearchView.swift in Sources */,
@@ -302,6 +309,7 @@
 				019A0E8A2A5E89A400BAACCC /* InstagramCloneApp.swift in Sources */,
 				0176CDEC2A6BFA7600727633 /* CreateUsernameView.swift in Sources */,
 				0176CDF02A6BFD5C00727633 /* CompleteSignUpView.swift in Sources */,
+				0176CDFE2A6C28A100727633 /* UploadPostViewModel.swift in Sources */,
 				0176CDF22A6C012A00727633 /* User.swift in Sources */,
 				019A0EAB2A5EA3B500BAACCC /* FeedView.swift in Sources */,
 				01593F4B2A6058FB001B4D75 /* AddEmailView.swift in Sources */,
