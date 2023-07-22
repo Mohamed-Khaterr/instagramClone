@@ -12,6 +12,7 @@ struct InstagramCloneApp: App {
     var body: some Scene {
         WindowGroup {
 //            MainTabBarView()
+//            AddEmailView()
             LoginView()
         }
     }
