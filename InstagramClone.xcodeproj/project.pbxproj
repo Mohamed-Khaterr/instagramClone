@@ -119,7 +119,7 @@
 		019A0E982A5E8B4C00BAACCC /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				019A0EA72A5E979300BAACCC /* Reusable Components */,
+				019A0EA72A5E979300BAACCC /* ReusableComponents */,
 				019A0E9C2A5E8BAB00BAACCC /* Authentication */,
 				019A0EA12A5E8C2000BAACCC /* TabBar */,
 				019A0E9D2A5E8BC800BAACCC /* Feed */,
@@ -218,14 +218,14 @@
 			path = UploadPost;
 			sourceTree = "<group>";
 		};
-		019A0EA72A5E979300BAACCC /* Reusable Components */ = {
+		019A0EA72A5E979300BAACCC /* ReusableComponents */ = {
 			isa = PBXGroup;
 			children = (
 				019A0EA82A5E97E100BAACCC /* ProfileStatusView.swift */,
 				01593F4C2A606083001B4D75 /* CustomTextFeild.swift */,
 				0176CDE92A6BF83C00727633 /* IGButtonModifier.swift */,
 			);
-			path = "Reusable Components";
+			path = ReusableComponents;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
