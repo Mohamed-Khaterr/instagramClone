@@ -9,27 +9,29 @@ import SwiftUI
 
 struct FeedCell: View {
     
+    private let post: Post
+    
+    init(post: Post) {
+        self.post = post
+    }
+    
     @State private var isLiked = false
     @State private var isSaved = false
-    
-    let imageName: String
     
     var body: some View {
         VStack(alignment: .center) {
             //MARK: - Username & pic
             HStack {
                 // user pic
-                Image("img1")
+                Image(post.publisher.getProfileImage())
                     .resizable()
                     .scaledToFill()
                     .clipShape(Circle())
                     .frame(width: 40, height: 40)
                 
                 // username
-                Button {
-                    print("Username button pressed")
-                } label: {
-                    Text("mohamed.khaterr")
+                NavigationLink(value: post.publisher) {
+                    Text(post.publisher.username)
                         .font(.subheadline)
                         .fontWeight(.medium)
                         .foregroundColor(.black)
@@ -41,11 +43,14 @@ struct FeedCell: View {
             
             
             //MARK: - Post Image
-            Image(imageName)
+            Image(post.imageURL)
                 .resizable()
                 .scaledToFit()
                 .frame(maxHeight: 520)
                 .clipShape(Rectangle())
+                .onTapGesture(count: 2) {
+                    isLiked = true
+                }
             
             
             
@@ -95,21 +100,23 @@ struct FeedCell: View {
             
             
             
-            //MARK: - Likes & Comments & Date
+            //MARK: - Likes & Caption & Date
             VStack(alignment: .leading, spacing: 4) {
                 // Likes number
-                Text("\(23) Likes")
+                Text("\(post.likes) Likes")
                     .font(.subheadline)
                     .fontWeight(.semibold)
                 
                 
-                // Comments Text
+                // Caption Text
                 HStack {
-                    // Username
-                    Text("username ").fontWeight(.semibold) +
-                    
-                    // Comment
-                    Text("Gamed yas7by")
+                    if let caption = post.caption {
+                        // Username
+                        Text("\(post.publisher.username) ").fontWeight(.semibold) +
+                        
+                        // Caption
+                        Text(caption)
+                    }
                 }
                 .font(.subheadline)
                 

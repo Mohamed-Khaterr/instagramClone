@@ -12,15 +12,15 @@ struct FeedView: View {
         NavigationStack {
             ScrollView(.vertical, showsIndicators: false) {
                 LazyVStack(spacing: 32) {
-                    ForEach(0..<15) { i in
-                        if i % 2 == 0 {
-                            FeedCell(imageName: "img1")
-                        } else {
-                            FeedCell(imageName: "img2")
-                        }
+                    ForEach(Post.MOCK_POSTS) { post in
+                        FeedCell(post: post)
                     }
                 }
                 .padding(.top)
+            }
+            // The Value of this Destination came from FeedCell (username::Text)
+            .navigationDestination(for: User.self) { user in
+                ProfileView(user: user)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -30,7 +30,11 @@ struct FeedView: View {
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Image(systemName: "heart")
+                    NavigationLink {
+                        Text("Notifications")
+                    } label: {
+                        Image(systemName: "heart")
+                    }
                 }
             }
         }
