@@ -1,5 +1,5 @@
 //
-//  CreatePasswordView.swift
+//  CompleteSignUpView.swift
 //  InstagramClone
 //
 //  Created by Khater on 7/22/23.
@@ -7,36 +7,41 @@
 
 import SwiftUI
 
-struct CreatePasswordView: View {
+struct CompleteSignUpView: View {
     
-    @State private var password = ""
+    @EnvironmentObject var viewModel: RegistrationViewModel
     
     var body: some View {
         NavigationStack {
             VStack {
                 VStack(spacing: 12) {
-                    Text("Create Password")
+                    Text("Welcome to instagram")
                         .font(.title2)
                         .fontWeight(.bold)
                     
-                    Text("You'r password must be at least 6 characters in length")
+                    Text("Click below to complete registration and start using instagram")
                         .font(.footnote)
                         .foregroundColor(.gray)
                         .multilineTextAlignment(.center)
                 }
                 
-                CustomTextFeild(type: .password, binding: $password)
                 
-                
-                NavigationLink {
-                    CompleteSignUpView()
+                Button {
+                    Task {
+                        do {
+                            try await viewModel.createUser()
+                        } catch {
+                            print(error)
+                        }
+                    }
                 } label: {
-                    Text("Next")
+                    Text("Get Started!")
                         .modifier(IGButtonModifier())
                 }
                 .padding(.top)
             }
             .padding(.horizontal, 24)
+            .navigationBarBackButtonHidden()
         }
     }
 }

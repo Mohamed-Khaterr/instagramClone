@@ -35,6 +35,7 @@ struct CurrentUserProfileView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         print("Sheet Button Pressed")
+                        try? AuthService.shared.signOut()
                     } label: {
                         Image(systemName: "line.3.horizontal")
                     }

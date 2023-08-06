@@ -11,7 +11,8 @@ struct LoginView: View {
     
     @State private var email: String = ""
     @State private var password: String = ""
-    @State private var registerTapped = false
+    
+    @StateObject private var viewModel = LoginViewModel()
     
     var body: some View {
         NavigationStack {
@@ -26,8 +27,11 @@ struct LoginView: View {
                 
                 // TextFields
                 VStack {
-                    CustomTextFeild(type: .email, binding: $email)
-                    CustomTextFeild(type: .password, binding: $password)
+                    TextField("Email", text: $viewModel.email)
+                        .modifier(IGTextFieldModifier(type: .email))
+                    
+                    SecureField("Password", text: $viewModel.password)
+                        .modifier(IGTextFieldModifier(type: .password))
                 }
                 .padding(.horizontal, 24)
                 
@@ -38,18 +42,22 @@ struct LoginView: View {
                 }
                 .font(.footnote)
                 .fontWeight(.medium)
-                .padding(.top)
                 .padding(.trailing, 24)
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 
                 // Login Button
                 Button {
-                    print("Login Button")
+                    Task {
+                        do {
+                            try await viewModel.login()
+                        } catch {
+                            
+                        }
+                    }
                 } label: {
                     Text("Login")
                         .modifier(IGButtonModifier())
                 }
-                .padding(.top)
                 .padding(.horizontal, 24)
                 
                 // Or Divider
@@ -96,6 +104,7 @@ struct LoginView: View {
                 // Register Link
                 NavigationLink {
                     AddEmailView()
+                    
                 } label: {
                     Text("Don't have an account?")
                     

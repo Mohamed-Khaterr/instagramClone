@@ -1,51 +1,50 @@
 //
-//  CustomTextFeild.swift
+//  IGTextFieldModifier.swift
 //  InstagramClone
 //
-//  Created by Khater on 7/13/23.
+//  Created by Khater on 8/6/23.
 //
 
 import SwiftUI
 
-enum TextFieldType {
+enum IGTextFieldType {
     case email
     case username
     case password
 }
 
-
-struct CustomTextFeild: View {
+struct IGTextFieldModifier: ViewModifier {
     
-    private let type: TextFieldType
-    @State private var bind: Binding<String>
+    let type: IGTextFieldType
     
-    init(type: TextFieldType, binding bind: Binding<String>) {
-        self.type = type
-        self.bind = bind
-    }
-    
-    var body: some View {
+    func body(content: Content) -> some View {
         switch type {
         case .email:
-            TextField("Email", text: bind)
+            content
                 .autocapitalization(.none)
+                .textContentType(.emailAddress)
+                .keyboardType(.emailAddress)
                 .font(.subheadline)
                 .padding(12)
                 .background(Color(.systemGray6))
                 .cornerRadius(10)
         case .username:
-            TextField("Username", text: bind)
+            content
                 .autocapitalization(.none)
+                .keyboardType(.asciiCapable)
+                .disableAutocorrection(true)
                 .font(.subheadline)
                 .padding(12)
                 .background(Color(.systemGray6))
                 .cornerRadius(10)
         case .password:
-            SecureField("Password", text: bind)
+            content
                 .font(.subheadline)
+                .textContentType(.password)
                 .padding(12)
                 .background(Color(.systemGray6))
                 .cornerRadius(10)
+                
         }
     }
 }
