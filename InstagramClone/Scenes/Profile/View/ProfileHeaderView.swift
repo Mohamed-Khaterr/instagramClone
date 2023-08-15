@@ -11,6 +11,8 @@ struct ProfileHeaderView: View {
     
     private let isCurrentUser: Bool
     private let user: User?
+    
+    @State private var showEditProfile = false
 
     init(isCurrentUser: Bool = false, user: User?) {
         self.isCurrentUser = isCurrentUser
@@ -80,7 +82,7 @@ struct ProfileHeaderView: View {
                 HStack(spacing: 8) {
                     // Edit Button
                     Button {
-                        print("Edit Profile Button Pressed")
+                        showEditProfile.toggle()
                     } label: {
                         Text("Edit Profile")
                             .font(.subheadline)
@@ -131,6 +133,9 @@ struct ProfileHeaderView: View {
                 .frame(maxWidth: .infinity)
                 .padding(.horizontal)
             }
+        }
+        .fullScreenCover(isPresented: $showEditProfile) {
+            EditProfileView()
         }
     }
 }
