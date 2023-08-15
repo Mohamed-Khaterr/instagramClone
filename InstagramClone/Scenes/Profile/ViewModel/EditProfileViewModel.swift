@@ -11,14 +11,26 @@ import PhotosUI
 
 
 final class EditProfileViewModel: ObservableObject {
+    private let service = UserService()
+    private var user: User
+    
+    
+    @Published var fullName: String
+    @Published var bio: String
+    
+    
+    @Published var profileImage: Image?
     @Published var selectedImage: PhotosPickerItem? {
         didSet { Task { await loadImage(fromItem: selectedImage) }}
     }
     
-    @Published var profileImage: Image?
     
-    @Published var fullName: String = ""
-    @Published var bio: String = ""
+    init(user: User){
+        self.user = user
+        fullName = user.fullName ?? ""
+        bio = user.bio ?? ""
+    }
+    
     
     func loadImage(fromItem item: PhotosPickerItem?) async {
         guard let item = item else { return }
@@ -38,8 +50,23 @@ final class EditProfileViewModel: ObservableObject {
         }
     }
     
-    func cancel() {
-        profileImage = nil
-        selectedImage = nil
+    @MainActor func updateUserData() async throws {
+        // update profile image
+        
+        
+        
+        // Update FullName and Bio
+        if user.fullName != fullName || user.bio != bio {
+            user.fullName = fullName
+            user.bio = bio
+            do {
+                try await service.updateData(for: user)
+                
+                await AuthService.shared.loadUserData()
+                
+            } catch {
+                throw error
+            }
+        }
     }
 }

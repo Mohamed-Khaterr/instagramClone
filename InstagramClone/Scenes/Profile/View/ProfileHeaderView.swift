@@ -10,11 +10,11 @@ import SwiftUI
 struct ProfileHeaderView: View {
     
     private let isCurrentUser: Bool
-    private let user: User?
+    private let user: User
     
     @State private var showEditProfile = false
 
-    init(isCurrentUser: Bool = false, user: User?) {
+    init(isCurrentUser: Bool = false, user: User) {
         self.isCurrentUser = isCurrentUser
         self.user = user
     }
@@ -23,21 +23,12 @@ struct ProfileHeaderView: View {
         VStack(spacing: 16) {
             //MARK: Profile Picture and Status
             HStack {
-                if let user = user {
-                    // Profile Pic
-                    Image(user.getProfileImage())
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 80, height: 80)
-                        .clipShape(Circle())
-                } else {
-                    // Profile Pic
-                    Image("profilePicAvatar")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 80, height: 80)
-                        .clipShape(Circle())
-                }
+                // Profile Pic
+                Image(user.getProfileImage())
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 80, height: 80)
+                    .clipShape(Circle())
                 
                                 
                 Spacer()
@@ -61,15 +52,14 @@ struct ProfileHeaderView: View {
             
             //MARK: FullName and Bio
             VStack(alignment: .leading, spacing: 4) {
-                if let user = user {
-                    // Full name
-                    Text(user.fullName ?? "")
-                    
-                    // Bio
-                    Text(user.bio ?? "")
-                        .font(.footnote)
-                        .font(.headline)
-                }
+                // Full name
+                Text(user.fullName ?? "")
+                
+                // Bio
+                Text(user.bio ?? "")
+                    .font(.footnote)
+                    .font(.headline)
+                
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal)
@@ -135,7 +125,7 @@ struct ProfileHeaderView: View {
             }
         }
         .fullScreenCover(isPresented: $showEditProfile) {
-            EditProfileView()
+            EditProfileView(user: user)
         }
     }
 }

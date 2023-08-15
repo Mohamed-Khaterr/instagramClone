@@ -19,4 +19,17 @@ struct UserService {
             throw error
         }
     }
+    
+    
+    func updateData(for user: User) async throws {
+        do {
+            let userDocument = Firestore.firestore().collection("users").document(user.id)
+            
+            let encodedUser = try Firestore.Encoder().encode(user)
+            
+            try await userDocument.updateData(encodedUser)
+        } catch {
+            throw error
+        }
+    }
 }
