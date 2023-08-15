@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		012D86A92A8BEDB9006A6399 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012D86A82A8BEDB9006A6399 /* UserService.swift */; };
+		012D86AB2A8BF11E006A6399 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012D86AA2A8BF11E006A6399 /* SearchViewModel.swift */; };
 		013AD9552A5F085D001A332A /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013AD9542A5F085D001A332A /* SearchView.swift */; };
 		01444F852A6C59D000EF9816 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01444F842A6C59D000EF9816 /* GoogleService-Info.plist */; };
 		01444F882A6C5B0300EF9816 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 01444F872A6C5B0300EF9816 /* FirebaseAuth */; };
@@ -43,6 +45,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		012D86A82A8BEDB9006A6399 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		012D86AA2A8BF11E006A6399 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		013AD9542A5F085D001A332A /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		01444F842A6C59D000EF9816 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		01444F912A6C5CAF00EF9816 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -201,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				01444F912A6C5CAF00EF9816 /* AuthService.swift */,
+				012D86A82A8BEDB9006A6399 /* UserService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -245,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				013AD9542A5F085D001A332A /* SearchView.swift */,
+				012D86AA2A8BF11E006A6399 /* SearchViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -389,12 +395,14 @@
 				019A0E8A2A5E89A400BAACCC /* InstagramCloneApp.swift in Sources */,
 				0176CDEC2A6BFA7600727633 /* CreateUsernameView.swift in Sources */,
 				0176CDF02A6BFD5C00727633 /* CompleteSignUpView.swift in Sources */,
+				012D86A92A8BEDB9006A6399 /* UserService.swift in Sources */,
 				0176CDFE2A6C28A100727633 /* UploadPostViewModel.swift in Sources */,
 				0176CDF22A6C012A00727633 /* User.swift in Sources */,
 				019A0EAB2A5EA3B500BAACCC /* FeedView.swift in Sources */,
 				01593F4B2A6058FB001B4D75 /* AddEmailView.swift in Sources */,
 				01593F452A604D66001B4D75 /* LoginView.swift in Sources */,
 				01444F942A6C5ED600EF9816 /* ContentView.swift in Sources */,
+				012D86AB2A8BF11E006A6399 /* SearchViewModel.swift in Sources */,
 				01444F9B2A6C65B900EF9816 /* RegistrationViewModel.swift in Sources */,
 				0176CDF82A6C0EFE00727633 /* Post.swift in Sources */,
 				019A0EA42A5E8CB100BAACCC /* MainTabBarView.swift in Sources */,
