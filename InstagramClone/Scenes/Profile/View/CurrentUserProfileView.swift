@@ -10,7 +10,7 @@ import SwiftUI
 
 struct CurrentUserProfileView: View {
     
-    private let currentUser: User = User.MOCK_USERS[0]
+    let user: User
     
     private let gridItems: [GridItem] = [
         .init(.flexible(), spacing: 1),
@@ -22,14 +22,14 @@ struct CurrentUserProfileView: View {
         NavigationStack {
             ScrollView(.vertical, showsIndicators: false) {
                 // Header
-                ProfileHeaderView(isCurrentUser: true, user: currentUser)
+                ProfileHeaderView(isCurrentUser: true, user: user)
                 
                 // Post Grid View
                 ProfilePostGridView(posts: Post.MOCK_POSTS)
                 
                 Spacer()
             }
-            .navigationTitle("Profile")
+            .navigationTitle(user.username)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {

@@ -16,6 +16,6 @@ final class RegistrationViewModel: ObservableObject {
     
     func createUser() async throws {
         // Firebase has email and password validation :)
-        try await AuthService.shared.createUser(email: email, username: username, password: password)
+        try await AuthService.shared.createUser(username: username, email: email, password: password)
     }
 }

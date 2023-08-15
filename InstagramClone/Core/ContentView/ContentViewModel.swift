@@ -15,6 +15,7 @@ final class ContentViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     
     @Published var isUserLoggedIn = false
+    @Published var currentUser: User?
     
     init() {
         bind()
@@ -22,12 +23,19 @@ final class ContentViewModel: ObservableObject {
     
     func bind() {
         // Subscribe to AuthService
-        authSevice.$isAuthorized.sink { [weak self] isAuthorized in
-            guard let strongSelf = self else { return }
-            DispatchQueue.main.async {
+        authSevice.$isAuthorized
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isAuthorized in
+                guard let strongSelf = self else { return }
                 strongSelf.isUserLoggedIn = isAuthorized
             }
-        }
-        .store(in: &cancellables)
+            .store(in: &cancellables)
+        
+        authSevice.$currentUser
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] user in
+                self?.currentUser = user
+            }
+            .store(in: &cancellables)
     }
 }

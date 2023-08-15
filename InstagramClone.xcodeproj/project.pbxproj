@@ -226,11 +226,8 @@
 		019A0E9E2A5E8BD300BAACCC /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				0176CDF32A6C0A3E00727633 /* CurrentUserProfileView.swift */,
-				019A0EA52A5E8EF800BAACCC /* ProfileView.swift */,
-				019A0EA82A5E97E100BAACCC /* ProfileStatusView.swift */,
-				0176CDF52A6C0A5C00727633 /* ProfileHeaderView.swift */,
-				0176CDF92A6C199E00727633 /* ProfilePostGridView.swift */,
+				01A6A5B82A82C98D00E6DC70 /* View */,
+				01A6A5B72A82C97600E6DC70 /* ViewModel */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -276,6 +273,25 @@
 				0176CDE92A6BF83C00727633 /* IGButtonModifier.swift */,
 			);
 			path = ReusableComponents;
+			sourceTree = "<group>";
+		};
+		01A6A5B72A82C97600E6DC70 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		01A6A5B82A82C98D00E6DC70 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0176CDF32A6C0A3E00727633 /* CurrentUserProfileView.swift */,
+				019A0EA52A5E8EF800BAACCC /* ProfileView.swift */,
+				0176CDF52A6C0A5C00727633 /* ProfileHeaderView.swift */,
+				019A0EA82A5E97E100BAACCC /* ProfileStatusView.swift */,
+				0176CDF92A6C199E00727633 /* ProfilePostGridView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

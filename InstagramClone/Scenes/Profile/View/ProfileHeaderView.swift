@@ -10,9 +10,9 @@ import SwiftUI
 struct ProfileHeaderView: View {
     
     private let isCurrentUser: Bool
-    private let user: User
-    
-    init(isCurrentUser: Bool = false, user: User) {
+    private let user: User?
+
+    init(isCurrentUser: Bool = false, user: User?) {
         self.isCurrentUser = isCurrentUser
         self.user = user
     }
@@ -21,13 +21,23 @@ struct ProfileHeaderView: View {
         VStack(spacing: 16) {
             //MARK: Profile Picture and Status
             HStack {
-                // Profile Pic
-                Image(user.getProfileImage())
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 80, height: 80)
-                    .clipShape(Circle())
+                if let user = user {
+                    // Profile Pic
+                    Image(user.getProfileImage())
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 80, height: 80)
+                        .clipShape(Circle())
+                } else {
+                    // Profile Pic
+                    Image("profilePicAvatar")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 80, height: 80)
+                        .clipShape(Circle())
+                }
                 
+                                
                 Spacer()
                 
                 // Posts
@@ -49,16 +59,14 @@ struct ProfileHeaderView: View {
             
             //MARK: FullName and Bio
             VStack(alignment: .leading, spacing: 4) {
-                // Full name
-                if let fullName = user.fullName {
-                    Text(fullName)
-                        .font(.headline)
-                }
-                
-                // Bio
-                if let bio = user.bio {
-                    Text(bio)
+                if let user = user {
+                    // Full name
+                    Text(user.fullName ?? "")
+                    
+                    // Bio
+                    Text(user.bio ?? "")
                         .font(.footnote)
+                        .font(.headline)
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)

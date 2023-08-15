@@ -14,7 +14,10 @@ struct ContentView: View {
     var body: some View {
         Group {
             if viewModel.isUserLoggedIn {
-                MainTabBarView()
+                if let currentUser = viewModel.currentUser{
+                    MainTabBarView(user: currentUser)
+                }
+                
             } else {
                 LoginView()
                     .environmentObject(RegistrationViewModel())

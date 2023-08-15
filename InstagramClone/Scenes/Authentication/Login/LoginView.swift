@@ -25,40 +25,41 @@ struct LoginView: View {
                     .scaledToFit()
                     .frame(width: 220, height: 100)
                 
-                // TextFields
+                
                 VStack {
+                    // TextFields
                     TextField("Email", text: $viewModel.email)
                         .modifier(IGTextFieldModifier(type: .email))
                     
                     SecureField("Password", text: $viewModel.password)
                         .modifier(IGTextFieldModifier(type: .password))
-                }
-                .padding(.horizontal, 24)
-                
-                
-                // Forgot Password Button
-                Button("Forgot Password?") {
-                    print("Forgot Pasword button")
-                }
-                .font(.footnote)
-                .fontWeight(.medium)
-                .padding(.trailing, 24)
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                
-                // Login Button
-                Button {
-                    Task {
-                        do {
-                            try await viewModel.login()
-                        } catch {
-                            
-                        }
+                    
+                    // Forgot Password Button
+                    Button("Forgot Password?") {
+                        print("Forgot Pasword button")
                     }
-                } label: {
-                    Text("Login")
-                        .modifier(IGButtonModifier())
+                    .font(.footnote)
+                    .fontWeight(.medium)
+                    .padding(.trailing, 24)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    
+                    
+                    // Login Button
+                    Button {
+                        Task {
+                            do {
+                                try await viewModel.login()
+                            } catch {
+                                
+                            }
+                        }
+                    } label: {
+                        Text("Login")
+                            .modifier(IGButtonModifier())
+                    }
                 }
                 .padding(.horizontal, 24)
+                
                 
                 // Or Divider
                 HStack {

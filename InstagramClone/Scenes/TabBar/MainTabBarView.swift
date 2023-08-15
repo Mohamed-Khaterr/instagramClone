@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MainTabBarView: View {
     
+    let user: User
+    
     @State var selectedTab = 0
     
     var body: some View {
@@ -37,7 +39,7 @@ struct MainTabBarView: View {
                 }
                 .tag(3)
 
-            CurrentUserProfileView()
+            CurrentUserProfileView(user: user)
                 .tabItem {
                     Image(systemName: "person")
                 }
@@ -49,6 +51,6 @@ struct MainTabBarView: View {
 
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
-        MainTabBarView()
+        MainTabBarView(user: User.MOCK_USERS[0])
     }
 }
