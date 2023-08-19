@@ -61,7 +61,7 @@ struct UploadPostView: View {
                     
                     Spacer()
                 }
-                .photosPicker(isPresented: $imagePickerPresented, selection: $viewModel.selectedPostImage)
+                .photosPicker(isPresented: $imagePickerPresented, selection: $viewModel.selectedPostImageItem)
                 
                 
                 

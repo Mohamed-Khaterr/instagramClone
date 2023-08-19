@@ -13,6 +13,7 @@ struct EditProfileView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject private var viewModel: EditProfileViewModel
     
+    
     init(user: User){
         self._viewModel = StateObject(wrappedValue: EditProfileViewModel(user: user))
     }
@@ -52,13 +53,13 @@ struct EditProfileView: View {
             
             
             // Edit Profile Pic
-            PhotosPicker(selection: $viewModel.selectedImage) {
+            PhotosPicker(selection: $viewModel.profileImageItem) {
                 VStack {
                     CircularProfileImageView(imageURLString: viewModel.currentProfileImage,
-                                             image: viewModel.selectedProfileImage,
+                                             image: $viewModel.profileImage,
                                              size: .large)
-                   
-                    
+
+
                     Text("Edit Profile Picture")
                         .font(.subheadline)
                         .fontWeight(.medium)

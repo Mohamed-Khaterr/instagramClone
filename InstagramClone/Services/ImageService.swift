@@ -6,12 +6,24 @@
 //
 
 import Foundation
-import UIKit
+import SwiftUI
+import PhotosUI
+import Combine
 import Firebase
 import FirebaseStorage
 
 
 struct ImageService {
+    
+    func loadImageFromPhotos(item: PhotosPickerItem?) async -> UIImage? {
+        guard let item = item else { return nil }
+        
+        // Image Data from Photos
+        guard let data = try? await item.loadTransferable(type: Data.self) else  { return nil }
+        
+        return UIImage(data: data)
+    }
+    
     func uploadImage(image: UIImage) async throws -> String? {
         guard let imageData = image.jpegData(compressionQuality: 0.0) else { return nil }
         let filename = UUID().uuidString
