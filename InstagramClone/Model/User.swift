@@ -15,10 +15,6 @@ struct User: Identifiable, Hashable, Codable {
     var profileImageURL: String?
     var fullName: String?
     var bio: String?
-    
-    func getProfileImage() -> String {
-        return profileImageURL ?? "profilePicAvatar"
-    }
 }
 
 

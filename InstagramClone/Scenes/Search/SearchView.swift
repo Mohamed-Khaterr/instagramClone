@@ -47,7 +47,7 @@ fileprivate struct SearchCell: View {
     var body: some View {
         HStack {
             // user pic
-            Image(user.getProfileImage())
+            Image("profilePicAvatar")
                 .resizable()
                 .scaledToFill()
                 .frame(width: 40, height: 40)

@@ -24,11 +24,7 @@ struct ProfileHeaderView: View {
             //MARK: Profile Picture and Status
             HStack {
                 // Profile Pic
-                Image(user.getProfileImage())
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 80, height: 80)
-                    .clipShape(Circle())
+                CircularProfileImageView(imageURLString: user.profileImageURL, size: .large)
                 
                                 
                 Spacer()

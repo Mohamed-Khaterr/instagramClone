@@ -12,6 +12,7 @@ import PhotosUI
 
 final class EditProfileViewModel: ObservableObject {
     private let service = UserService()
+    private let imageService = ImageService()
     private var user: User
     
     
@@ -20,9 +21,15 @@ final class EditProfileViewModel: ObservableObject {
     @Published var isLoading = false
     
     
-    @Published var profileImage: Image?
+    @Published var selectedProfileImage: Image?
     @Published var selectedImage: PhotosPickerItem? {
         didSet { Task { await loadImage(fromItem: selectedImage) }}
+    }
+    
+    private var uiSelectedProfileImage: UIImage?
+    
+    public var currentProfileImage: String? {
+        return user.profileImageURL
     }
     
     
@@ -43,7 +50,10 @@ final class EditProfileViewModel: ObservableObject {
             }
             
             if let uiImage = UIImage(data: data) {
-                self.profileImage = Image(uiImage: uiImage)
+                DispatchQueue.main.async {
+                    self.selectedProfileImage = Image(uiImage: uiImage)
+                }
+                self.uiSelectedProfileImage = uiImage
             }
             
         } catch {
@@ -55,6 +65,18 @@ final class EditProfileViewModel: ObservableObject {
         isLoading = true
         
         // update profile image if changed
+        if let uiProfileImage = uiSelectedProfileImage {
+            do {
+                let imageURL = try await imageService.uploadImage(image: uiProfileImage)
+                user.profileImageURL = imageURL
+                try await service.updateData(for: user)
+                
+                await AuthService.shared.loadUserData()
+                
+            } catch {
+                throw error
+            }
+        }
         
         
         

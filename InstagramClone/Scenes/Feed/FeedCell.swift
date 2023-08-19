@@ -23,7 +23,7 @@ struct FeedCell: View {
             //MARK: - Username & pic
             HStack {
                 // user pic
-                Image(post.publisher.getProfileImage())
+                Image("profilePicAvatar")
                     .resizable()
                     .scaledToFill()
                     .clipShape(Circle())
