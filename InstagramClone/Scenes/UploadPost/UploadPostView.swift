@@ -23,7 +23,7 @@ struct UploadPostView: View {
             ScrollView {
                 VStack {
                     
-                    if let image = viewModel.image {
+                    if let image = viewModel.postImage {
                         // Selected image from PhotoPicker
                         image
                             .resizable()
@@ -61,7 +61,7 @@ struct UploadPostView: View {
                     
                     Spacer()
                 }
-                .photosPicker(isPresented: $imagePickerPresented, selection: $viewModel.selectedImage)
+                .photosPicker(isPresented: $imagePickerPresented, selection: $viewModel.selectedPostImage)
                 
                 
                 

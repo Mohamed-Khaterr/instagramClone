@@ -13,11 +13,13 @@ import PhotosUI
 @MainActor
 final class UploadPostViewModel: ObservableObject {
     
-    @Published var selectedImage: PhotosPickerItem? {
-        didSet { Task { await loadImage(fromItem: selectedImage) }}
+    @Published var postImage: Image?
+    @Published var selectedPostImage: PhotosPickerItem? {
+        didSet { Task { await loadImage(fromItem: selectedPostImage) }}
     }
     
-    @Published var image: Image?
+    private var uiPostImage: UIImage?
+    
     
     func loadImage(fromItem item: PhotosPickerItem?) async {
         guard let item = item else { return }
@@ -29,7 +31,8 @@ final class UploadPostViewModel: ObservableObject {
             }
             
             if let uiImage = UIImage(data: data) {
-                self.image = Image(uiImage: uiImage)
+                self.postImage = Image(uiImage: uiImage)
+                self.uiPostImage = uiImage
             }
             
         } catch {
@@ -37,8 +40,18 @@ final class UploadPostViewModel: ObservableObject {
         }
     }
     
+    func uploadPost(caption: String?) async throws {
+        guard
+            let user = AuthService.shared.currentUser,
+            let userID = AuthService.shared.currentUser?.id,
+            let uiPostImage = uiPostImage
+        else { return }
+        
+        let post = Post(id: "", publisherUid: userID, publisher: user, caption: caption, imageURL: "", likes: 0, timestamp: Date())
+    }
+    
     func cancel() {
-        image = nil
-        selectedImage = nil
+        postImage = nil
+        selectedPostImage = nil
     }
 }
