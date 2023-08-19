@@ -41,7 +41,6 @@ final class UploadPostViewModel: ObservableObject {
         
         guard
             let user = AuthService.shared.currentUser,
-            let userID = AuthService.shared.currentUser?.id,
             let uiPostImage = uiPostImage
         else { return }
 
@@ -49,7 +48,6 @@ final class UploadPostViewModel: ObservableObject {
         let postDoc = Firestore.firestore().collection("posts").document()
         guard let imageURL = try await imageService.uploadImage(uiPostImage, withPath: "post_images") else { return }
         let post = Post(id: postDoc.documentID,
-                        ownerID: userID,
                         owner: user,
                         caption: caption,
                         imageURL: imageURL,

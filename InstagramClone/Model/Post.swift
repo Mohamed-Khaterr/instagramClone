@@ -11,7 +11,6 @@ import Foundation
 struct Post: Identifiable, Hashable, Codable {
     let id: String
     
-    let ownerID: String
     let owner: User
     
     let caption: String?
@@ -24,7 +23,6 @@ struct Post: Identifiable, Hashable, Codable {
 extension Post {
     static var MOCK_POSTS: [Post] = [
         .init(id: NSUUID().uuidString,
-              ownerID: NSUUID().uuidString,
               owner: User.MOCK_USERS[0],
               caption: nil,
               imageURL: "img1",
@@ -32,7 +30,6 @@ extension Post {
               timestamp: Date()),
         
         .init(id: NSUUID().uuidString,
-              ownerID: NSUUID().uuidString,
               owner: User.MOCK_USERS[1],
               caption: "New World",
               imageURL: "img2",
@@ -40,7 +37,6 @@ extension Post {
               timestamp: Date()),
         
         .init(id: NSUUID().uuidString,
-              ownerID: NSUUID().uuidString,
               owner: User.MOCK_USERS[2],
               caption: "!!!",
               imageURL: "img1",
@@ -48,7 +44,6 @@ extension Post {
               timestamp: Date()),
         
         .init(id: NSUUID().uuidString,
-              ownerID: NSUUID().uuidString,
               owner: User.MOCK_USERS[3],
               caption: "No Caption :(",
               imageURL: "img2",
@@ -56,7 +51,6 @@ extension Post {
               timestamp: Date()),
         
             .init(id: NSUUID().uuidString,
-                  ownerID: NSUUID().uuidString,
                   owner: User.MOCK_USERS[4],
                   caption: nil,
                   imageURL: "img1",
