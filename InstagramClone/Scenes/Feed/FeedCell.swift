@@ -23,11 +23,7 @@ struct FeedCell: View {
             //MARK: - Username & pic
             HStack {
                 // user pic
-                Image("profilePicAvatar")
-                    .resizable()
-                    .scaledToFill()
-                    .clipShape(Circle())
-                    .frame(width: 40, height: 40)
+                CircularProfileImageView(imageURLString: nil, size: .small)
                 
                 // username
                 NavigationLink(value: post.publisher) {

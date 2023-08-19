@@ -47,11 +47,7 @@ fileprivate struct SearchCell: View {
     var body: some View {
         HStack {
             // user pic
-            Image("profilePicAvatar")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 40, height: 40)
-                .clipShape(Circle())
+            CircularProfileImageView(imageURLString: user.profileImageURL, size: .small)
             
             VStack(alignment: .leading) {
                 // username

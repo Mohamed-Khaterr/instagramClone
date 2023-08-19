@@ -57,22 +57,6 @@ struct EditProfileView: View {
                     CircularProfileImageView(imageURLString: viewModel.currentProfileImage,
                                              image: viewModel.selectedProfileImage,
                                              size: .large)
-//                    if let profileImage = viewModel.profileImage {
-//                        profileImage
-//                            .resizable()
-//                            .scaledToFill()
-//                            .background(.black)
-//                            .clipShape(Circle())
-//                            .frame(width: 90, height: 90)
-//                    } else {
-//                        Image(systemName: "person")
-//                            .resizable()
-//                            .padding()
-//                            .background(.gray)
-//                            .foregroundColor(.white)
-//                            .clipShape(Circle())
-//                            .frame(width: 90, height: 90)
-//                    }
                    
                     
                     Text("Edit Profile Picture")

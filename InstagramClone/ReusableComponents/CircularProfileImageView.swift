@@ -48,13 +48,13 @@ struct CircularProfileImageView: View {
                 .clipShape(Circle())
                 .frame(width: size.dimension, height: size.dimension)
         } else {
-            Image(systemName: "person")
+            Image(systemName: "person.circle.fill")
                 .resizable()
-                .padding()
-                .background(.gray)
-                .foregroundColor(.white)
-                .clipShape(Circle())
+                .scaledToFit()
                 .frame(width: size.dimension, height: size.dimension)
+                .foregroundColor(.white)
+                .background(.gray)
+                .clipShape(Circle())
         }
     }
 }
