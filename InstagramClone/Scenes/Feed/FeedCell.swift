@@ -26,8 +26,8 @@ struct FeedCell: View {
                 CircularProfileImageView(imageURLString: nil, size: .small)
                 
                 // username
-                NavigationLink(value: post.publisher) {
-                    Text(post.publisher.username)
+                NavigationLink(value: post.owner) {
+                    Text(post.owner.username)
                         .font(.subheadline)
                         .fontWeight(.medium)
                         .foregroundColor(.black)
@@ -108,7 +108,7 @@ struct FeedCell: View {
                 HStack {
                     if let caption = post.caption {
                         // Username
-                        Text("\(post.publisher.username) ").fontWeight(.semibold) +
+                        Text("\(post.owner.username) ").fontWeight(.semibold) +
                         
                         // Caption
                         Text(caption)
