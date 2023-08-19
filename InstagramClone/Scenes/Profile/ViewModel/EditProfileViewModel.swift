@@ -17,6 +17,7 @@ final class EditProfileViewModel: ObservableObject {
     
     @Published var fullName: String
     @Published var bio: String
+    @Published var isLoading = false
     
     
     @Published var profileImage: Image?
@@ -51,11 +52,13 @@ final class EditProfileViewModel: ObservableObject {
     }
     
     @MainActor func updateUserData() async throws {
-        // update profile image
+        isLoading = true
+        
+        // update profile image if changed
         
         
         
-        // Update FullName and Bio
+        // Update FullName and Bio if changed
         if user.fullName != fullName || user.bio != bio {
             user.fullName = fullName
             user.bio = bio
@@ -68,5 +71,7 @@ final class EditProfileViewModel: ObservableObject {
                 throw error
             }
         }
+        
+        isLoading = false
     }
 }

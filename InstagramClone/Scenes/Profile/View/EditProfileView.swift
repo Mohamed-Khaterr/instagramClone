@@ -82,9 +82,16 @@ struct EditProfileView: View {
             Divider()
             
             // Edit Profile Info
-            EditProfileTextInputView(title: "Name", text: $viewModel.fullName)
+            EditProfileTextInputView(title: "Name", placeholder: "Your name", text: $viewModel.fullName)
             
-            EditProfileTextInputView(title: "Bio", text: $viewModel.bio)
+            EditProfileTextInputView(title: "Bio", placeholder: "Your bio", text: $viewModel.bio)
+            
+            if viewModel.isLoading {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: Color(.systemGray)))
+                    .scaleEffect(2)
+                
+            }
             
             Spacer()
         }
@@ -94,6 +101,7 @@ struct EditProfileView: View {
 
 fileprivate struct EditProfileTextInputView: View {
     let title: String
+    let placeholder: String
     @Binding var text: String
     
     var body: some View {
@@ -103,7 +111,7 @@ fileprivate struct EditProfileTextInputView: View {
                 .frame(width: 100, alignment: .leading)
             
             VStack {
-                TextField("", text: $text)
+                TextField(placeholder, text: $text)
                 
                 Divider()
             }
