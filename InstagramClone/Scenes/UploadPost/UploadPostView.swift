@@ -59,6 +59,12 @@ struct UploadPostView: View {
                     TextField("Caption...", text: $caption, axis: .vertical)
                         .padding()
                     
+                    if viewModel.isLoading {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: Color(.systemGray)))
+                            .scaleEffect(2)
+                    }
+                    
                     Spacer()
                 }
                 .photosPicker(isPresented: $imagePickerPresented, selection: $viewModel.selectedPostImageItem)
@@ -73,7 +79,12 @@ struct UploadPostView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Share") {
-                        print("Share Button Pressed")
+                        Task {
+                            try await viewModel.uploadPost(caption: caption)
+                            viewModel.cancel()
+                            caption = ""
+                            selectedTab = 4
+                        }
                     }
                 }
                 

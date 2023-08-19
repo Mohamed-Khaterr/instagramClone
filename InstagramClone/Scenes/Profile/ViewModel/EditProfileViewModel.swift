@@ -54,7 +54,7 @@ final class EditProfileViewModel: ObservableObject {
         // update profile image if changed
         if let uiProfileImage = uiProfileImage {
             do {
-                let imageURL = try await imageService.uploadImage(image: uiProfileImage)
+                let imageURL = try await imageService.uploadImage(uiProfileImage, withPath: "profile_images")
                 user.profileImageURL = imageURL
                 try await service.updateData(for: user)
                 

@@ -24,11 +24,11 @@ struct ImageService {
         return UIImage(data: data)
     }
     
-    func uploadImage(image: UIImage) async throws -> String? {
+    func uploadImage(_ image: UIImage, withPath imagePath: String) async throws -> String? {
         guard let imageData = image.jpegData(compressionQuality: 0.0) else { return nil }
-        let filename = UUID().uuidString
-        
-        let ref = Storage.storage().reference(withPath: "/profile_images/\(filename).jpeg")
+        let imageName = UUID().uuidString
+        // profile_images
+        let ref = Storage.storage().reference(withPath: "/\(imagePath)/\(imageName).jpeg")
         
         do {
             let _ = try await ref.putDataAsync(imageData)

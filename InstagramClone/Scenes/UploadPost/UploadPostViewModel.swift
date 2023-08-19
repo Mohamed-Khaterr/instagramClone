@@ -8,12 +8,15 @@
 import Foundation
 import SwiftUI
 import PhotosUI
+import Firebase
 
 
 @MainActor
 final class UploadPostViewModel: ObservableObject {
     
     private let imageService = ImageService()
+    
+    @Published var isLoading = false
     
     private var uiPostImage: UIImage?
     
@@ -33,15 +36,30 @@ final class UploadPostViewModel: ObservableObject {
     }
     
     
-//    func uploadPost(caption: String?) async throws {
-//        guard
-//            let user = AuthService.shared.currentUser,
-//            let userID = AuthService.shared.currentUser?.id,
-//            let uiPostImage = uiPostImage
-//        else { return }
-//
-//        let post = Post(id: "", publisherUid: userID, publisher: user, caption: caption, imageURL: "", likes: 0, timestamp: Date())
-//    }
+    func uploadPost(caption: String?) async throws {
+        isLoading = true
+        
+        guard
+            let user = AuthService.shared.currentUser,
+            let userID = AuthService.shared.currentUser?.id,
+            let uiPostImage = uiPostImage
+        else { return }
+
+        
+        let postDoc = Firestore.firestore().collection("posts").document()
+        guard let imageURL = try await imageService.uploadImage(uiPostImage, withPath: "post_images") else { return }
+        let post = Post(id: postDoc.documentID,
+                        ownerID: userID,
+                        owner: user,
+                        caption: caption,
+                        imageURL: imageURL,
+                        likes: 0,
+                        timestamp: Date())
+        guard let encodedPost = try? Firestore.Encoder().encode(post) else { return }
+        try await postDoc.setData(encodedPost)
+        
+        isLoading = false
+    }
     
     func cancel() {
         postImage = nil
