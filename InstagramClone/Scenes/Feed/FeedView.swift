@@ -31,6 +31,14 @@ struct FeedView: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink {
+                        UploadPostView()
+                    } label: {
+                        Image(systemName: "plus.square.fill")
+                    }
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink {
                         Text("Notifications")
                     } label: {
                         Image(systemName: "heart")

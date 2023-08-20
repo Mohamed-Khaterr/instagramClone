@@ -10,11 +10,12 @@ import PhotosUI
 
 struct UploadPostView: View {
     
+    @Environment(\.dismiss) var dismiss
+    
     @StateObject var viewModel = UploadPostViewModel()
     
     @State private var imagePickerPresented = false
     @State private var caption: String = ""
-    @Binding var selectedTab: Int
     @State private var tabBarVisibility: Visibility = .visible
 
     
@@ -75,15 +76,18 @@ struct UploadPostView: View {
             // Navigation Bar
             .navigationTitle("New Post")
             .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden()
             .toolbar(tabBarVisibility, for: .tabBar)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Share") {
                         Task {
-                            try await viewModel.uploadPost(caption: caption)
-                            viewModel.cancel()
-                            caption = ""
-                            selectedTab = 4
+                            if viewModel.selectedPostImageItem != nil {
+                                try await viewModel.uploadPost(caption: caption)
+                                viewModel.cancel()
+                                caption = ""
+                                dismiss()
+                            }
                         }
                     }
                 }
@@ -92,7 +96,7 @@ struct UploadPostView: View {
                     Button {
                         viewModel.cancel()
                         caption = ""
-                        selectedTab = 0
+                        dismiss()
                     } label: {
                         Image(systemName: "xmark")
                             .resizable()

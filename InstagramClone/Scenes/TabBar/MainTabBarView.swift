@@ -27,23 +27,11 @@ struct MainTabBarView: View {
                 }
                 .tag(1)
 
-            UploadPostView(selectedTab: $selectedTab)
-                .tabItem {
-                    Image(systemName: "plus.square.fill")
-                }
-                .tag(2)
-
-            Text("Notifications")
-                .tabItem {
-                    Image(systemName: "heart")
-                }
-                .tag(3)
-
             CurrentUserProfileView(user: user)
                 .tabItem {
                     Image(systemName: "person")
                 }
-                .tag(4)
+                .tag(2)
         }
         .accentColor(.black)
     }
