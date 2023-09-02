@@ -7,29 +7,66 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestoreSwift
 
 
-struct UserService {
+enum FirebaseDocument {
+    case users
+    case posts
     
-    func fetchAllUsers() async throws -> [User] {
+    var name: String {
+        switch self {
+        case .users: return "users"
+        case .posts: return "posts"
+        }
+    }
+}
+
+
+final class UserService {
+    
+    private var currentUser: User?
+    
+    
+    // MARK: - Functions
+    private func uploadDataForSignUpUser(uid: String, username: String, email: String) async throws {
+        let user = User(id: uid, email: email, username: username)
+        // Encode User
+        let encodeUserData = try Firestore.Encoder().encode(user)
+        
+        // Save user as Collection
+        try await Firestore.firestore().collection(FirebaseDocument.users.name).document(user.id).setData(encodeUserData)
+        
+        // Don't need to fetch user again
+        currentUser = user
+    }
+    
+    func fetchCurrentUserData(id userID: String) async {
         do {
-            let snapshot = try await Firestore.firestore().collection("users").getDocuments()
-            return snapshot.documents.compactMap({ try? $0.data(as: User.self) })
+            // Get Document Snapshot
+            let snapshot = try await Firestore.firestore().collection(FirebaseDocument.users.name).document(userID).getDocument()
+            
+            // Decode User
+            let user = try snapshot.data(as: User.self)
+            
+            
+            currentUser = user
+            
         } catch {
-            throw error
+            print("UserService::loadUserData error: \(error.localizedDescription)")
         }
     }
     
-    
     func updateData(for user: User) async throws {
-        do {
-            let userDocument = Firestore.firestore().collection("users").document(user.id)
-            
-            let encodedUser = try Firestore.Encoder().encode(user)
-            
-            try await userDocument.updateData(encodedUser)
-        } catch {
-            throw error
-        }
+        let userDocument = Firestore.firestore().collection(FirebaseDocument.users.name).document(user.id)
+        
+        let encodedUser = try Firestore.Encoder().encode(user)
+        
+        try await userDocument.updateData(encodedUser)
+    }
+    
+    func fetchAllUsers() async throws -> [User] {
+        let snapshot = try await Firestore.firestore().collection(FirebaseDocument.users.name).getDocuments()
+        return snapshot.documents.compactMap({ try? $0.data(as: User.self) })
     }
 }
